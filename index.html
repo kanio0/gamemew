@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Kanio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+
+        #menuScreen,
+        #settingsScreen,
+        #aboutScreen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 1280px;
+            height: 720px;
+            background: url('img/menu.png') center/cover no-repeat;
+        }
+
+        .menu-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #005eff;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .menu-button {
+            width: 200px;
+            padding: 12px;
+            margin: 10px;
+            font-size: 1.2rem;
+            border: 2px solid #005eff;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #005eff;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .menu-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="menuScreen" class="screen">
+        <h1 class="menu-title">Без названия</h1>
+        <button id="playBtn" class="menu-button">Play</button>
+        <button id="settingsBtn" class="menu-button">Settings</button>
+        <button id="aboutBtn" class="menu-button">About</button>
+    </div>
+
+    <div id="gameScreen" class="screen">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <div id="settingsScreen" class="screen" style="flex-direction: column;">
+        <h1>Настройки</h1>
+        <p>Управление на WASD или стрелочки</p>
+        <p>Включить музыку - тыкнуть мышкой</p>
+        <p>Стрелять во врагов - Q</p>
+        <p>Ударить мечом - P</p>
+        <p>Открыть магазин - T</p>
+        <p>Закрыть магазин - X</p>
+        <button id="backFromSettings" class="menu-button">← Back</button>
+    </div>
+
+    <div id="aboutScreen" class="screen" style="flex-direction: column;">
+        <h1>About “Без названия”</h1>
+        <p>Создатель игры - Чепайкина Анастасия. Тгк: @tochka_kaniio. Или можете писать в лс: @kaniio_o</p>
+        <button id="backFromAbout" class="menu-button">← Back</button>
+        <img src="img/cat.jpg"
+            style="margin-top: 20px; max-width: 15%; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.5);" />
+    </div>
+
+    <script>
+        const menuScreen = document.getElementById('menuScreen');
+        const gameScreen = document.getElementById('gameScreen');
+        const settingsScreen = document.getElementById('settingsScreen');
+        const aboutScreen = document.getElementById('aboutScreen');
+
+        document.getElementById('playBtn').addEventListener('click', () => {
+            initGame();
+        });
+        document.getElementById('settingsBtn').addEventListener('click', () => {
+            showScreen(settingsScreen);
+        });
+        document.getElementById('aboutBtn').addEventListener('click', () => {
+            showScreen(aboutScreen);
+        });
+        document.getElementById('backFromSettings').addEventListener('click', () => {
+            showScreen(menuScreen);
+        });
+        document.getElementById('backFromAbout').addEventListener('click', () => {
+            showScreen(menuScreen);
+        });
+
+        function showScreen(screen) {
+            [menuScreen, gameScreen, settingsScreen, aboutScreen].forEach(s => {
+                s.style.display = (s === screen) ? 'flex' : 'none';
+            });
+        }
+
+        function initGame() {
+            setTimeout(function () {
+                window.location.href = "index1.html";
+            }, 250);
+        }
+
+        window.onload = () => showScreen(menuScreen);
+    </script>
+</body>
+
+</html>
