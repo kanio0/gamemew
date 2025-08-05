@@ -1160,12 +1160,12 @@ function checkEnemy() {
 }
 
 function checkFishScore() {
-    if (Fish.score == 10 && Fish.check1) {
+    if (Fish.score == 350 && Fish.check1) {
         Fish.check2 = true;
         Fish.check1 = false;
         Hero.score += Math.floor(Math.random() * 999 + 1);
     }
-    else if (Fish.score == 20 && Fish.check2) {
+    else if (Fish.score == 1000 && Fish.check2) {
         Fish.check2 = false;
         Hero.score += 1000;
     }
